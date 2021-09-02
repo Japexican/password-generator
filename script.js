@@ -1,5 +1,5 @@
 // Assignment code here
-var specialCharacters = [
+const specialCharacters = [
     "@",
     "%",
     "+",
@@ -25,9 +25,9 @@ var specialCharacters = [
     ".",
 ];
 
-var numericCharacters = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+const numericCharacters = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
-var lowerCasedCharacters = [
+const lowerCasedCharacters = [
     "a",
     "b",
     "c",
@@ -56,7 +56,7 @@ var lowerCasedCharacters = [
     "z",
 ];
 
-var upperCasedCharacters = [
+const upperCasedCharacters = [
     "A",
     "B",
     "C",
@@ -86,7 +86,7 @@ var upperCasedCharacters = [
 ];
 
 // Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
+const generateBtn = document.querySelector("#generate");
 
 function criteria() {
     const length = Number(prompt(`How many characters would you like the password to be?\n Between 8-128 characters long`));
@@ -109,13 +109,40 @@ function criteria() {
 }
 
 function generatePassword() {
+    const finalPassword =[]
+    const guaranteedCharacters = []
+    let possibleCharacters = []
     const promptResults = criteria();
+    if (promptResults.upperConfirm) {
+        possibleCharacters = possibleCharacters.concat(upperCasedCharacters)
+        guaranteedCharacters.push(upperCasedCharacters[Math.floor(Math.random()*upperCasedCharacters.length-1)])
+    }
+    if (promptResults.lowerConfirm) {
+        possibleCharacters = possibleCharacters.concat(lowerCasedCharacters)
+        guaranteedCharacters.push(lowerCasedCharacters[Math.floor(Math.random()*lowerCasedCharacters.length-1)])
+    }
+    if (promptResults.numericConfirm) {
+        possibleCharacters = possibleCharacters.concat(numericCharacters)
+        guaranteedCharacters.push(numericCharacters[Math.floor(Math.random()*numericCharacters.length-1)])
+    }
+    if (promptResults.specialConfirm) {
+        possibleCharacters = possibleCharacters.concat(specialCharacters)
+        guaranteedCharacters.push(specialCharacters[Math.floor(Math.random()*specialCharacters.length-1)])
+    }
+    for(let i=0; i<guaranteedCharacters.length; i++){
+        finalPassword.push(guaranteedCharacters [i])
+        promptResults.length--
+    }
+    for(let i=0; i<=possibleCharacters.length; i++){
+        finalPassword.push(possibleCharacters[i])
+        console.log(generatePassword);
+    }
 }
 
 // Write password to the #password input
 function writePassword() {
-    var password = generatePassword();
-    var passwordText = document.querySelector("#password");
+    const password = generatePassword();
+    const passwordText = document.querySelector("#password");
     passwordText.value = password;
 }
 
