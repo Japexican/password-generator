@@ -89,7 +89,23 @@ var upperCasedCharacters = [
 var generateBtn = document.querySelector("#generate");
 
 function criteria() {
-    //user prompt here
+    const length = Number(prompt(`How many characters would you like the password to be?\n Between 8-128 characters long`));
+    if (length < 8 || length > 128) {
+        alert("Please enter a number between 8 and 128.");
+        criteria()
+    }
+    const upperConfirm = confirm("Would you like upper case letters?\n OK for yes, Cancel for no.")
+    const lowerConfirm = confirm("Would you like lower case letters?\n OK for yes, Cancel for no.")
+    const numericConfirm = confirm("Would you like numbers?\n OK for yes, Cancel for no.")
+    const specialConfirm = confirm("Would you like special characters?\n OK for yes, Cancel for no.")
+    const input={
+        length,
+        upperConfirm,
+        lowerConfirm,
+        numericConfirm,
+        specialConfirm,
+    }
+    return input
 }
 
 function generatePassword() {
