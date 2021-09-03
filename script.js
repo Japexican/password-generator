@@ -129,14 +129,19 @@ function generatePassword() {
         possibleCharacters = possibleCharacters.concat(specialCharacters)
         guaranteedCharacters.push(specialCharacters[Math.floor(Math.random()*specialCharacters.length-1)])
     }
+    console.log(guaranteedCharacters);
+    console.log(possibleCharacters)
+
     for(let i=0; i<guaranteedCharacters.length; i++){
         finalPassword.push(guaranteedCharacters [i])
         promptResults.length--
     }
-    for(let i=0; i<=possibleCharacters.length; i++){
-        finalPassword.push(possibleCharacters[i])
-        console.log(generatePassword);
+    for(let i=0; i<promptResults.length; i++){
+        finalPassword.push(possibleCharacters [Math.floor(Math.random()*possibleCharacters.length-1)])
+    
     }
+    console.log(finalPassword);
+    return finalPassword.join("")
 }
 
 // Write password to the #password input
